@@ -8,7 +8,7 @@
 </head>
 <body>
 <button class="enableEthereumButton btn">Enable</button>
-<button class="sendEthButton btn">Pay</button>
+<a id="sendLink"><button class="sendEthButton btn">Pay</button></a>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -16,9 +16,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.7.0-rc.0/web3.min.js" integrity="sha512-/PTXSvaFzmO4So7Ghyq+DEZOz0sNLU4v1DP4gMOfY3kFu9L/IKoqSHZ6lNl3ZoZ7wT20io3vu/U4IchGcGIhfw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     getAccount();
-    const web3 = new Web3(Web3.givenProvider || "ws://localhost:8545");
     const ethereumButton = document.querySelector('.enableEthereumButton');
     const sendEthButton = document.querySelector('.sendEthButton');
+    const sendLink = document.querySelector('#sendLink');
+    // Check if mobile device
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        sendLink.setAttribute("href", "https://metamask.app.link/dapp/metamask-client.herokuapp.com/index2.html")
+    }
+
+    const web3 = new Web3(Web3.givenProvider || "ws://localhost:8545");
     const amount = web3.utils.toWei('1', 'ether');
     const value = web3.utils.toHex(amount);
 
