@@ -17,6 +17,8 @@
 <script>
     const ethereumButton = document.querySelector('.enableEthereumButton');
     const sendEthButton = document.querySelector('.sendEthButton');
+    const amount = web3.utils.toWei('1', 'ether');
+    const value = web3.utils.toHex(amount);
 
     let accounts = [];
 
@@ -29,7 +31,8 @@
                     {
                         from: accounts[0],
                         to: '0x95B4696f2ca5373fC7A7EfC2a9b5E2366c200D36',
-                        value: '0x29a2241af62c0000',
+                        // value: '0x29a2241af62c0000',
+                        value,
                         gasPrice: '0x09184e72a000',
                         gas: '0x2710',
                     },
