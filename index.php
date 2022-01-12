@@ -76,6 +76,7 @@ $iOSApp = (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile/') !== false) && (strpos(
     async function getAccount() {
         accounts = await ethereum.request({ method: 'eth_requestAccounts' })
             .then((res) => console.log(res));
+        console.log("Acc "+accounts[0])
     }
 </script>
 </body>
