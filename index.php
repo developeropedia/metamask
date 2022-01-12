@@ -38,15 +38,13 @@ $iOSApp = (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile/') !== false) && (strpos(
     const sendEthButton = document.querySelector('.sendEthButton');
     const sendLink = document.querySelector('#sendLink');
     // Check if mobile device
-    if(iPhoneBrowser || iPadBrowser || AndroidBrowser) {
-        alert("Browser")
+    if((iPhoneBrowser || iPadBrowser || AndroidBrowser) && !window.ethereum) {
         sendLink.setAttribute("href", "https://metamask.app.link/dapp/metamask-client.herokuapp.com/index.php")
     }
 
-    if(AndroidApp || iOSApp) {
-        alert("Browser")
-        sendLink.removeAttribute("href")
-    }
+    // if(AndroidApp || iOSApp) {
+    //     sendLink.removeAttribute("href")
+    // }
 
     const web3 = new Web3(Web3.givenProvider || "ws://localhost:8545");
     const amount = web3.utils.toWei('1', 'ether');
