@@ -39,7 +39,7 @@ $iOSApp = (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile/') !== false) && (strpos(
     const sendLink = document.querySelector('#sendLink');
     // Check if mobile device
     if(iPhoneBrowser || iPadBrowser || AndroidBrowser) {
-        sendLink.setAttribute("href", "https://metamask.app.link/dapp/metamask-client.herokuapp.com/index2.html")
+        sendLink.setAttribute("href", "https://metamask.app.link/dapp/metamask-client.herokuapp.com/index.php")
     }
 
     const web3 = new Web3(Web3.givenProvider || "ws://localhost:8545");
@@ -50,7 +50,7 @@ $iOSApp = (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile/') !== false) && (strpos(
 
     //Sending Ethereum to an address
     sendEthButton.addEventListener('click', () => {
-        // getAccount()
+        getAccount()
         ethereum
             .request({
                 method: 'eth_sendTransaction',
@@ -69,13 +69,12 @@ $iOSApp = (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile/') !== false) && (strpos(
             .catch((error) => console.error);
     });
 
-    ethereumButton.addEventListener('click', () => {
-        getAccount();
-    });
+    // ethereumButton.addEventListener('click', () => {
+    //     getAccount();
+    // });
 
     async function getAccount() {
         accounts = await ethereum.request({ method: 'eth_requestAccounts' })
-            .then((res) => console.log(res));
     }
 </script>
 </body>
