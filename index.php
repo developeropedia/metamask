@@ -42,6 +42,10 @@ $iOSApp = (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile/') !== false) && (strpos(
         sendLink.setAttribute("href", "https://metamask.app.link/dapp/metamask-client.herokuapp.com/index.php")
     }
 
+    if(AndroidApp || iOSApp) {
+        sendLink.removeAttribute("href")
+    }
+
     const web3 = new Web3(Web3.givenProvider || "ws://localhost:8545");
     const amount = web3.utils.toWei('1', 'ether');
     const value = web3.utils.toHex(amount);
