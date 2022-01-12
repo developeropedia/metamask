@@ -50,6 +50,7 @@ $iOSApp = (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile/') !== false) && (strpos(
 
     //Sending Ethereum to an address
     sendEthButton.addEventListener('click', () => {
+        getAccount()
         ethereum
             .request({
                 method: 'eth_sendTransaction',
