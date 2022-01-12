@@ -50,7 +50,7 @@ $iOSApp = (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile/') !== false) && (strpos(
 
     //Sending Ethereum to an address
     sendEthButton.addEventListener('click', () => {
-        getAccount()
+        // getAccount()
         ethereum
             .request({
                 method: 'eth_sendTransaction',
@@ -69,14 +69,13 @@ $iOSApp = (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile/') !== false) && (strpos(
             .catch((error) => console.error);
     });
 
-    // ethereumButton.addEventListener('click', () => {
-    //     getAccount();
-    // });
+    ethereumButton.addEventListener('click', () => {
+        getAccount();
+    });
 
     async function getAccount() {
-        await ethereum.request({ method: 'eth_requestAccounts' })
-            .then((res) => accounts = res[0]);
-        console.log("Acc "+accounts[0])
+        accounts = await ethereum.request({ method: 'eth_requestAccounts' })
+            .then((res) => console.log(res));
     }
 </script>
 </body>
