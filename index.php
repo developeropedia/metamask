@@ -39,10 +39,12 @@ $iOSApp = (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile/') !== false) && (strpos(
     const sendLink = document.querySelector('#sendLink');
     // Check if mobile device
     if(iPhoneBrowser || iPadBrowser || AndroidBrowser) {
+        alert("Browser")
         sendLink.setAttribute("href", "https://metamask.app.link/dapp/metamask-client.herokuapp.com/index.php")
     }
 
     if(AndroidApp || iOSApp) {
+        alert("Browser")
         sendLink.removeAttribute("href")
     }
 
