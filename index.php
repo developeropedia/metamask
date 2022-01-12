@@ -4,7 +4,7 @@
 $iPhoneBrowser  = stripos($_SERVER['HTTP_USER_AGENT'], "iPhone");
 $iPadBrowser    = stripos($_SERVER['HTTP_USER_AGENT'], "iPad");
 $AndroidBrowser = stripos($_SERVER['HTTP_USER_AGENT'], "Android");
-$AndroidApp = $_SERVER['HTTP_X_REQUESTED_WITH'] == "com.company.app";
+$AndroidApp = $_SERVER['HTTP_X_REQUESTED_WITH'] == "io.metamask";
 $iOSApp = (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile/') !== false) && (strpos($_SERVER['HTTP_USER_AGENT'], 'Safari/') == false);
 
 ?>
