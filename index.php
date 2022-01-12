@@ -1,3 +1,15 @@
+<!--CHECK FOR MOBILE APP AND BROWSERS-->
+<?php
+
+$iPhoneBrowser  = stripos($_SERVER['HTTP_USER_AGENT'], "iPhone");
+$iPadBrowser    = stripos($_SERVER['HTTP_USER_AGENT'], "iPad");
+$AndroidBrowser = stripos($_SERVER['HTTP_USER_AGENT'], "Android");
+$AndroidApp = $_SERVER['HTTP_X_REQUESTED_WITH'] == "com.company.app";
+$iOSApp = (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile/') !== false) && (strpos($_SERVER['HTTP_USER_AGENT'], 'Safari/') == false);
+
+?>
+
+
 <html>
 <head>
     <meta charset="UTF-8">
@@ -15,12 +27,18 @@
 <!--<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js" integrity="sha256-nWBTbvxhJgjslRyuAKJHK+XcZPlCnmIAAMixz6EefVk=" crossorigin="anonymous"></script>-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.7.0-rc.0/web3.min.js" integrity="sha512-/PTXSvaFzmO4So7Ghyq+DEZOz0sNLU4v1DP4gMOfY3kFu9L/IKoqSHZ6lNl3ZoZ7wT20io3vu/U4IchGcGIhfw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
+    let iPhoneBrowser = "<?php echo $iPhoneBrowser ?>";
+    let iPadBrowser = "<?php echo $iPadBrowser ?>";
+    let AndroidBrowser = "<?php echo $AndroidBrowser ?>";
+    let AndroidApp = "<?php echo $AndroidApp ?>";
+    let iOSApp = "<?php echo $iOSApp ?>";
+
     getAccount();
     const ethereumButton = document.querySelector('.enableEthereumButton');
     const sendEthButton = document.querySelector('.sendEthButton');
     const sendLink = document.querySelector('#sendLink');
     // Check if mobile device
-    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+    if(iPhoneBrowser || iPadBrowser || AndroidBrowser) {
         sendLink.setAttribute("href", "https://metamask.app.link/dapp/metamask-client.herokuapp.com/index2.html")
     }
 
@@ -55,7 +73,8 @@
     // });
 
     async function getAccount() {
-        accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+        accounts = await ethereum.request({ method: 'eth_requestAccounts' })
+            .then((res) => console.log(res));
     }
 </script>
 </body>
